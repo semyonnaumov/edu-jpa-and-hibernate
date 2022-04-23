@@ -19,6 +19,10 @@ public class Person {
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Sex sex;
+    private Double salary;
+    @OneToOne
+    private Address address;
+
     @Transient
     private String debugInfo;
     private transient String moreDebugInfo;
@@ -69,5 +73,35 @@ public class Person {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", ssn='" + ssn + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", sex=" + sex +
+                ", salary=" + salary +
+                ", address=" + address +
+                '}';
     }
 }
