@@ -1,5 +1,8 @@
 package com.naumov;
 
+import com.naumov.entity.EmailGroup;
+import com.naumov.entity.Employee;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,12 +13,16 @@ public class JpaUpdater {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myApp");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Person yana = entityManager.find(Person.class, 2);
-        yana.setSalary(200_000);
+        Employee semyon = entityManager.find(Employee.class, 1);
+        EmailGroup group2 = entityManager.find(EmailGroup.class, 8);
+
+        semyon.addEmailGroups(group2);
+        group2.addEmployee(semyon);
 
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        entityManager.persist(yana);
+        entityManager.persist(semyon);
+        entityManager.persist(group2);
         transaction.commit();
 
         entityManager.close();

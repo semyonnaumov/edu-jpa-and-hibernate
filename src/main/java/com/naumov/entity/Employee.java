@@ -1,11 +1,13 @@
-package com.naumov;
+package com.naumov.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "people")
-public class Person {
+@Table(name = "employees")
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
@@ -20,8 +22,17 @@ public class Person {
     @Enumerated(EnumType.STRING)
     private Sex sex;
     private Double salary;
-    @OneToOne
-    private Address address;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private AccessCard accessCard;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.REMOVE)
+    private List<PayStub> payStubs = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "email_group_subscriptions",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id")
+    )
+    private List<EmailGroup> emailGroups = new ArrayList<>();
 
     @Transient
     private String debugInfo;
@@ -83,12 +94,36 @@ public class Person {
         this.salary = salary;
     }
 
-    public Address getAddress() {
-        return address;
+    public AccessCard getAccessCard() {
+        return accessCard;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAccessCard(AccessCard accessCard) {
+        this.accessCard = accessCard;
+    }
+
+    public List<PayStub> getPayStubs() {
+        return payStubs;
+    }
+
+    public void setPayStubs(List<PayStub> payStubs) {
+        this.payStubs = payStubs;
+    }
+
+    public void addPayStub(PayStub payStub) {
+        this.payStubs.add(payStub);
+    }
+
+    public List<EmailGroup> getEmailGroups() {
+        return emailGroups;
+    }
+
+    public void setEmailGroups(List<EmailGroup> emailGroups) {
+        this.emailGroups = emailGroups;
+    }
+
+    public void addEmailGroups(EmailGroup emailGroup) {
+        this.emailGroups.add(emailGroup);
     }
 
     @Override
@@ -101,7 +136,12 @@ public class Person {
                 ", dateOfBirth=" + dateOfBirth +
                 ", sex=" + sex +
                 ", salary=" + salary +
-                ", address=" + address +
+                ", address=" + accessCard +
                 '}';
+    }
+
+    public enum Sex {
+        MALE,
+        FEMALE
     }
 }

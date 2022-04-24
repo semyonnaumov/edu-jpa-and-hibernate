@@ -1,5 +1,8 @@
 package com.naumov;
 
+import com.naumov.entity.EmailGroup;
+import com.naumov.entity.Employee;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -10,11 +13,11 @@ public class JpaDeleter {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myApp");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Person person = entityManager.find(Person.class, 2);
+        Employee semyon = entityManager.find(Employee.class, 1);
 
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        entityManager.remove(person);
+        entityManager.remove(semyon);
         transaction.commit();
 
         entityManager.close();
