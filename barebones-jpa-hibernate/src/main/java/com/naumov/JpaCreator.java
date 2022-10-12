@@ -1,9 +1,9 @@
 package com.naumov;
 
-import com.naumov.entity.AccessCard;
 import com.naumov.entity.EmailGroup;
-import com.naumov.entity.PayStub;
 import com.naumov.entity.Employee;
+import com.naumov.entity.AccessCard;
+import com.naumov.entity.PayStub;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

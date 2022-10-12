@@ -1,6 +1,5 @@
 package com.naumov;
 
-import com.naumov.entity.EmailGroup;
 import com.naumov.entity.Employee;
 
 import javax.persistence.EntityManager;

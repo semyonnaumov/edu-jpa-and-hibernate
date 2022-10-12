@@ -7,6 +7,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "employees")
+@NamedQuery(
+        name = "employeesOrderedByAgeAsc",
+        query = "SELECT e FROM Employee e ORDER BY e.age ASC"
+)
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
