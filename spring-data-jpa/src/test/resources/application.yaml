@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    hibernate.ddl-auto: create-drop
+    properties:
+      javax:
+        persistence:
+          sharedCache:
+            # enable selective caching mode - only entities with @Cacheable annotation will ...
+            mode: ENABLE_SELECTIVE
+      hibernate.jdbc.batch_size: 10
+#      hibernate.format_sql: true
+#      hibernate.generate_statistics: true
+#      hibernate.cache.use_second_level_cache: true
+#      hibernate.cache.use_query_cache: true
+#      hibernate.order_updates: true
+#      hibernate.order_inserts: true
+#      hibernate.jdbc.batch_versioned_data: true
+      hibernate.region:
+        factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory
+    open-in-view: false
+  datasource:
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      connection-test-query: SELECT 1
+      validation-timeout: 3500
+      max-lifetime: 1200000
+      idle-timeout: 13000
+      connection-timeout: 100000

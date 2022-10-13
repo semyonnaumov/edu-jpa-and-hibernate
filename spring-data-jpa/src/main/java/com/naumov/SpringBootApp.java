@@ -41,11 +41,6 @@ public class SpringBootApp implements ApplicationListener<ContextRefreshedEvent>
         employee.ifPresent((e) -> System.out.println(employee.get()));
     }
 
-    @Transactional
-    public void doSmth() {
-
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(SpringBootApp.class, args);
     }

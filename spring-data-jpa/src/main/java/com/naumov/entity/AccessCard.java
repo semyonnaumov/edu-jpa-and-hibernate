@@ -1,8 +1,15 @@
 package com.naumov.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "access_cards")
 public class AccessCard {
@@ -13,36 +20,4 @@ public class AccessCard {
     private LocalDate issueDate;
     @OneToOne(mappedBy = "accessCard")
     private Employee owner;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDate getIssueDate() {
-        return issueDate;
-    }
-
-    public void setIssueDate(LocalDate moveInDate) {
-        this.issueDate = moveInDate;
-    }
-
-    public Employee getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Employee owner) {
-        this.owner = owner;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", moveInDate=" + issueDate +
-                '}';
-    }
 }

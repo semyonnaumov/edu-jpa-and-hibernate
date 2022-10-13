@@ -1,10 +1,15 @@
 package com.naumov.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "employees")
 @NamedQuery(
@@ -42,88 +47,8 @@ public class Employee {
     private String debugInfo;
     private transient String moreDebugInfo;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getSsn() {
-        return ssn;
-    }
-
-    public void setSsn(String ssn) {
-        this.ssn = ssn;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirthNew) {
-        this.dateOfBirth = dateOfBirthNew;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
-    public AccessCard getAccessCard() {
-        return accessCard;
-    }
-
-    public void setAccessCard(AccessCard accessCard) {
-        this.accessCard = accessCard;
-    }
-
-    public List<PayStub> getPayStubs() {
-        return payStubs;
-    }
-
-    public void setPayStubs(List<PayStub> payStubs) {
-        this.payStubs = payStubs;
-    }
-
     public void addPayStub(PayStub payStub) {
         this.payStubs.add(payStub);
-    }
-
-    public List<EmailGroup> getEmailGroups() {
-        return emailGroups;
-    }
-
-    public void setEmailGroups(List<EmailGroup> emailGroups) {
-        this.emailGroups = emailGroups;
     }
 
     public void addEmailGroups(EmailGroup emailGroup) {
