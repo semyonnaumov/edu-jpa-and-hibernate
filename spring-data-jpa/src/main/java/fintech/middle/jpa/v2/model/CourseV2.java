@@ -10,30 +10,30 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
-public class Course {
+@Entity(name = "v2Courses")
+public class CourseV2 {
     @Id
     @GeneratedValue
     private Long id;
     private String courseName;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Student> studentsApplied = new ArrayList<>();
+    private List<StudentV2> studentsApplied = new ArrayList<>();
     private LocalDate endDate = null;
 
-    public Course(String courseName) {
+    public CourseV2(String courseName) {
         this();
         this.courseName = courseName;
     }
 
-    public Course() {
+    public CourseV2() {
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(StudentV2 student) {
         this.studentsApplied.add(student);
         student.setCourse(this);
     }
 
-    public void removeStudent(Student student) {
+    public void removeStudent(StudentV2 student) {
         this.studentsApplied.remove(student);
         student.setCourse(null);
     }

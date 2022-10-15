@@ -9,11 +9,11 @@ spring:
             mode: ENABLE_SELECTIVE
       hibernate.jdbc.batch_size: 10
 #      hibernate.format_sql: true
-#      hibernate.generate_statistics: true
+      hibernate.generate_statistics: true # helps detect problems with N+1 and more
 #      hibernate.cache.use_second_level_cache: true
 #      hibernate.cache.use_query_cache: true
-#      hibernate.order_updates: true
-#      hibernate.order_inserts: true
+      hibernate.order_updates: true
+      hibernate.order_inserts: true
 #      hibernate.jdbc.batch_versioned_data: true
       hibernate.region:
         factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory

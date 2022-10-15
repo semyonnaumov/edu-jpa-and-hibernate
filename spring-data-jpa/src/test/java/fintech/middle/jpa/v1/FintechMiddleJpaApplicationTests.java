@@ -1,7 +1,7 @@
 package fintech.middle.jpa.v1;
 
-import fintech.middle.jpa.v1.model.Student;
-import fintech.middle.jpa.v1.repository.StudentRepository;
+import fintech.middle.jpa.v1.model.StudentV1;
+import fintech.middle.jpa.v1.repository.StudentRepositoryV1;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class FintechMiddleJpaApplicationTests {
     @Autowired
-    private StudentRepository studentRepository;
+    private StudentRepositoryV1 studentRepository;
 
     @BeforeEach
     void cleanup_tables() {
@@ -21,16 +21,16 @@ class FintechMiddleJpaApplicationTests {
 
     @Test
     void create_then_load_new_student() {
-        Student s = new Student();
+        StudentV1 s = new StudentV1();
         s.setName("Ivan");
-        Student savedStudent = studentRepository.save(s);
+        StudentV1 savedStudent = studentRepository.save(s);
 
         assertThat(savedStudent.getId()).isGreaterThan(0L);
 
         assertThat(studentRepository.getById(savedStudent.getId())).isNotNull();
         assertThat(studentRepository.findById(savedStudent.getId())).isPresent();
 
-        studentRepository.save(new Student());
+        studentRepository.save(new StudentV1());
         assertThat(studentRepository.findAll().size()).isEqualTo(2);
 
         studentRepository.deleteById(savedStudent.getId());
@@ -39,11 +39,11 @@ class FintechMiddleJpaApplicationTests {
 
     @Test
     void find_student_by_name() {
-        Student s = new Student();
+        StudentV1 s = new StudentV1();
         s.setName("Ivan");
-        Student savedStudent = studentRepository.save(s);
+        StudentV1 savedStudent = studentRepository.save(s);
 
-        Student foundStudent = studentRepository.findByName("Ivan");
+        StudentV1 foundStudent = studentRepository.findByName("Ivan");
 
         assertThat(savedStudent.getId()).isEqualTo(foundStudent.getId());
     }

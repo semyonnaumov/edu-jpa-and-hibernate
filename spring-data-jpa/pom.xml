@@ -17,6 +17,12 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- extended audit-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-envers</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
